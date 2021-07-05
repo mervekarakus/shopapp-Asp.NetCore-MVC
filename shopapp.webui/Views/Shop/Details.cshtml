@@ -1,0 +1,47 @@
+@model ProductDetailModel
+<partial name="_header"> 
+<div class="row">
+    <div class="col-md-3">
+        <img src="~/img/@Model.Product.ImageUrl" class="img-fluid">
+    </div>
+    <div class="col-md-9">
+        <h1 class="mb-3">@Model.Product.Name</h5>
+            <hr>
+
+            @foreach (var item in Model.Categories)
+            {
+                <a asp-controller="shop" asp-action="list" asp-route-category="@item.Url"
+                class="btn btn-primary btn-link p-0 mb-3">@item.Name</a>
+            }
+
+            <div class="mb-3">
+                <h4 class="text-primary mb-3">
+                    <i class="fas fa-lira-sign"></i>@Model.Product.Price
+                </h4>
+                 
+                <form asp-controller="Cart" asp-action="AddToCart" method="POST" class="form-inline">
+                    <input type="hidden" name="productId" value="@Model.Product.ProductId">
+                    <div class="input-group mb-3">
+                        <input type="number" name="quantity" class="form-control" value="1" min="1" step="1" style="width: 100px;">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-cart-plus"></i>Sepete Ekle                              
+                            </button>
+                        </div>
+                    </div>     
+               
+                </form>
+               
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 p-5">
+            <p class="p-3">@Html.Raw(Model.Product.Description)</p>
+        </div>
+    </div>
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+}

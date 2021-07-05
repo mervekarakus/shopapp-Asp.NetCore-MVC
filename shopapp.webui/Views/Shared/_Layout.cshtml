@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ceylan Perde Çeyiz</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="/modules/bootstrap/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    @RenderSection("Css",false)
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="icon" href="\img\icon.png" type="image/png" sizes="16x16">
+
+</head>
+
+<body>
+
+    @await Html.PartialAsync("_navbar")
+
+    <main class="my-3">
+        <div class="container">
+
+            @if (TempData["message"] != null)
+            {
+                <partial name="_ResultMessage" model="@(TempData.Get<AlertMessage>("message"))" />
+            }
+
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="py-5 bg-dark text-white text-center col-md-12" style=" position: relative">
+
+        Ceylan Perde Çeyiz | 2021
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    @RenderSection("Scripts",false)
+
+</body>
+
+</html>
